@@ -59,3 +59,10 @@ step()更新参数
 7.画图,用model(x).detach()取出数据plt.scatter(x.numpy(),y.numpy(),label="真实数据")画散点图
 plt.plot(x.numpy(), predicted.numpy(), 'r', label='拟合直线')画线r代表红色,plt.legend()显示图例
 title xlabel ylabel填名称
+7.6Transformer注意力机制原理学习笔记:这个机制是为了得到词意，比如区分apple是水果还是手机，为了让机器能够理解，所以得到了一个这样的机制，流程如下:
+1->将词embedding化为机器可阅读的语言(得到是含有很多信息的词，这里的"苹果"包含很多可能)
+2->引入QKV三个矩阵(query,key,value),将向量分别乘以三个矩阵得到各自向量的QKV矩阵
+3->各自向量的Q矩阵再点乘各个向量的K矩阵得到相似度分数矩阵
+4->进行缩放,为了使值不那么大或小
+5->得到点积结果再分配权重归一化，用softmax实现
+6->将得到的相似度与v相乘动态地得到实际的v值，就可以知道"苹果"到底是什么含义了
